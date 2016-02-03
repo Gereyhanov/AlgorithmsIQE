@@ -1,4 +1,4 @@
-package sample.libraries;
+package sample.functions;
 
 /******************************************************************************
  *  Compilation:  javac FFT.java

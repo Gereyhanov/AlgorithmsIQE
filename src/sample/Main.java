@@ -3,7 +3,6 @@ package sample;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.SceneBuilder;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -17,7 +16,26 @@ public class Main extends Application {
     @Override public void start(Stage primaryStage) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
-        primaryStage.setTitle("JavaFX Chart (Series)");
+        primaryStage.setScene(SceneBuilder.create()
+                .root(root)
+                .width(1500).height(800)
+               //  .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
+                .build()
+        );
+        primaryStage.show();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public  String getTitle() {
+        return "Title";
+    }
+
+    public XYChart.Series<Number, Number> generateDiagramSin(){
+
+        Stage stageDiagramSinView = new Stage();
 
         // create chart and set as center content
         CurvedFittedAreaChart chart = new CurvedFittedAreaChart(
@@ -36,18 +54,18 @@ public class Main extends Application {
                     new XYChart.Data<Number,Number>(i, Math.sin(i))
             );
         }
+
+        /*
         chart.getData().add(series);
 
-        primaryStage.setScene(SceneBuilder.create()
+        stageDiagramSinView.setScene(SceneBuilder.create()
                 .root(chart)
-                .width(1500).height(800)
-                // .stylesheets(CurveFittedChart.class.getResource("CurveFittedChart.css").toExternalForm())
+                .width(1200).height(800)
                 .build()
         );
-        primaryStage.show();
-    }
+        stageDiagramSinView.show();
+        */
 
-    public static void main(String[] args) {
-        launch(args);
+        return series;
     }
 }

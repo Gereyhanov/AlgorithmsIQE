@@ -1,3 +1,6 @@
+.root{
+    -fx-border-color: blue;
+}
 .chart {
     -fx-padding: 15 25 15 15;
 }
