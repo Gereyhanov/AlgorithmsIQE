@@ -2,22 +2,15 @@
     -fx-border-color: blue;
 }
 .chart {
-    -fx-padding: 15 25 15 15;
-}
-.chart-plot-background {
-    -fx-background-color: red;
-    -fx-background-size: cover, auto;
-    -fx-background-repeat: no-repeat, repeat;
-    -fx-background-position: 0% 0%, 0% 100%;
-    -fx-border-color: black black transparent transparent;
+    -fx-padding: 15 15 15 15;
 }
 .chart-area-symbol {
-    -fx-background-color: white;
-/*    -fx-padding: 0;*/
+    -fx-background-color: cyan;
+    -fx-padding: 5;
 }
 .chart-series-area-line { 
     -fx-stroke: white; 
-    -fx-stroke-width: 2px; 
+    -fx-stroke-width: 2px;
 }
 .chart-series-area-fill { 
     -fx-fill: linear-gradient(to right, white, rgba(255,255,255,0)); 

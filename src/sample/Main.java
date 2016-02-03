@@ -22,6 +22,7 @@ public class Main extends Application {
                //  .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
                 .build()
         );
+
         primaryStage.show();
     }
 
@@ -32,8 +33,8 @@ public class Main extends Application {
     public  String getTitle() {
         return "Title";
     }
-
-    public XYChart.Series<Number, Number> generateDiagramSin(){
+/*
+    public XYChart.Series <Number, Number> generateDiagramSin(){
 
         Stage stageDiagramSinView = new Stage();
 
@@ -51,11 +52,11 @@ public class Main extends Application {
 
         for(int i=0; i<30; i++){
             series.getData().addAll(
-                    new XYChart.Data<Number,Number>(i, Math.sin(i))
+                    new XYChart.Data<Number,Number>(i, Math.cbrt(i))
             );
         }
 
-        /*
+
         chart.getData().add(series);
 
         stageDiagramSinView.setScene(SceneBuilder.create()
@@ -64,8 +65,8 @@ public class Main extends Application {
                 .build()
         );
         stageDiagramSinView.show();
-        */
+
 
         return series;
-    }
+    }*/
 }

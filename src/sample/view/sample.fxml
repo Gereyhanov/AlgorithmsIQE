@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.Controller">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.Controller">
    <children>
-      <JFXColorPicker layoutX="228.0" layoutY="173.0" />
-      <JFXButton layoutX="228.0" layoutY="87.0" prefHeight="25.0" prefWidth="75.0" text="Button" />
+      <JFXColorPicker fx:id="colorPicker" layoutX="36.0" layoutY="292.0" prefHeight="31.0" prefWidth="149.0" />
+      <JFXButton fx:id="button" layoutX="35.0" layoutY="72.0" onAction="#onButtonShowDiagram" prefHeight="42.0" prefWidth="149.0" text="Start" />
+      <LineChart fx:id="areaChartView" layoutX="279.0" layoutY="84.0" prefHeight="702.0" prefWidth="1207.0" title="Diagramm">
+          <xAxis><NumberAxis label="Values for X-Axis" lowerBound="0" tickUnit="1" upperBound="3" /></xAxis>
+          <yAxis><NumberAxis label="Values for Y-Axis" lowerBound="0" tickUnit="1" upperBound="3" /></yAxis>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </LineChart>
+      <JFXTextField fx:id="textEditOne" layoutX="36.0" layoutY="140.0" promptText="Input 1" text="100" />
+      <JFXTextField fx:id="textEditTwo" layoutX="36.0" layoutY="201.0" promptText="Input 2" />
    </children>
 </Pane>
