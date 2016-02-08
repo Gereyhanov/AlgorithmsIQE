@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import com.jfoenix.controls.*?>
@@ -8,17 +9,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.Controller">
+<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.Controller">
    <children>
-      <JFXButton fx:id="button" layoutX="46.0" layoutY="128.0" onAction="#onButtonShowDiagram" prefHeight="42.0" prefWidth="185.0" text="Start render" />
-      <LineChart fx:id="areaChartView" layoutX="279.0" layoutY="84.0" prefHeight="702.0" prefWidth="1207.0" title="Diagramm">
-          <xAxis><NumberAxis label="Values for X-Axis" lowerBound="0" tickUnit="1" upperBound="3" /></xAxis>
-          <yAxis><NumberAxis label="Values for Y-Axis" lowerBound="0" tickUnit="1" upperBound="3" /></yAxis>
-         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </padding>
+      <LineChart fx:id="lineChartViewTwo" layoutX="1090.0" layoutY="300.0" prefHeight="300.0" prefWidth="500.0" title="One" AnchorPane.rightAnchor="10.0">
+         <xAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </yAxis>
       </LineChart>
-      <JFXButton fx:id="buttonSpeedMore" layoutX="46.0" layoutY="194.0" onAction="#onButtonSpeedMore" prefHeight="25.0" prefWidth="75.0" text="Speed+" />
-      <JFXButton fx:id="buttonSpeedLess" layoutX="156.0" layoutY="194.0" onAction="#onButtonSpeedLess" prefHeight="25.0" prefWidth="75.0" text="Speed-" />
+      <LineChart fx:id="lineChartViewThree" layoutX="1090.0" layoutY="600.0" prefHeight="300.0" prefWidth="500.0" title="One" AnchorPane.rightAnchor="10.0">
+         <xAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </yAxis>
+      </LineChart>
+      <LineChart fx:id="lineChartViewOne" layoutX="1090.0" prefHeight="300.0" prefWidth="500.0" title="One" AnchorPane.rightAnchor="10.0">
+         <xAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis lowerBound="0" tickUnit="1" upperBound="3" />
+         </yAxis>
+      </LineChart>
+      <JFXButton fx:id="button" defaultButton="true" layoutX="95.0" layoutY="99.0" onAction="#onButtonShowDiagram" prefHeight="40.0" prefWidth="220.0" text="Start render" textAlignment="CENTER" />
+      <JFXButton fx:id="buttonSpeedMore" defaultButton="true" layoutX="96.0" layoutY="160.0" onAction="#onButtonSpeedMore" prefHeight="40.0" prefWidth="100.0" text="Speed+" textAlignment="CENTER" />
+      <JFXButton fx:id="buttonSpeedLess" defaultButton="true" layoutX="215.0" layoutY="161.0" onAction="#onButtonSpeedLess" prefHeight="40.0" prefWidth="100.0" text="Speed-" textAlignment="CENTER" />
    </children>
-</Pane>
+</AnchorPane>

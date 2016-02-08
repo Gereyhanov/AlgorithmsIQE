@@ -15,7 +15,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
         primaryStage.setScene(SceneBuilder.create()
                 .root(root)
-                .width(1500).height(800)
+                .width(1600).height(900)
                //  .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
                 .build()
         );

@@ -1,8 +1,6 @@
 package sample.view;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXColorPicker;
-import com.jfoenix.controls.JFXTextField;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.SequentialTransition;
@@ -12,18 +10,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.effect.FloatMap;
-import javafx.scene.layout.Pane;
 
 import javafx.util.Duration;
 import sample.Main;
 
-import java.util.Timer;
-import java.util.TimerTask;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -37,7 +31,9 @@ public class Controller extends Main{
     private Timeline timeline;
     private SequentialTransition animation;
 
-    private ObservableList<XYChart.Series<Number, Number>> lineChartData = FXCollections.observableArrayList();
+    private ObservableList<XYChart.Series<Number, Number>> lineChartDataOne = FXCollections.observableArrayList();
+    private ObservableList<XYChart.Series<Number, Number>> lineChartDataTwo = FXCollections.observableArrayList();
+    private ObservableList<XYChart.Series<Number, Number>> lineChartDataThree = FXCollections.observableArrayList();
 
     Double count = 0.0;
     Double count2 = 0.0;
@@ -49,7 +45,11 @@ public class Controller extends Main{
     JFXButton buttonSpeedMore, buttonSpeedLess;
 
     @FXML
-    LineChart areaChartView = new LineChart(new NumberAxis(), new NumberAxis());
+    LineChart lineChartViewOne = new LineChart(new NumberAxis(), new NumberAxis());
+    @FXML
+    LineChart lineChartViewTwo = new LineChart(new NumberAxis(), new NumberAxis());
+    @FXML
+    LineChart lineChartViewThree = new LineChart(new NumberAxis(), new NumberAxis());
 
     Double[] xStep = new Double[100], yStep = new Double[100];
     Double[] xStep2 = new Double[100], yStep2 = new Double[100];
@@ -69,9 +69,17 @@ public class Controller extends Main{
         //-- Prepare Timeline
         //prepareTimeline();
 
-        areaChartView.setAnimated(false);
-        areaChartView.setData(lineChartData);
-        areaChartView.createSymbolsProperty();
+        lineChartViewOne.setAnimated(false);
+        lineChartViewOne.setData(lineChartDataOne);
+        lineChartViewOne.createSymbolsProperty();
+
+        lineChartViewTwo.setAnimated(false);
+        lineChartViewTwo.setData(lineChartDataTwo);
+        lineChartViewTwo.createSymbolsProperty();
+
+        lineChartViewThree.setAnimated(false);
+        lineChartViewThree.setData(lineChartDataThree);
+        lineChartViewThree.createSymbolsProperty();
 
         button.setStyle("-fx-background-color: cornflowerblue; -fx-text-fill: white; -fx-font-size: 20px");
         buttonSpeedMore.setStyle("-fx-background-color: indianred; -fx-text-fill: white");
@@ -106,7 +114,9 @@ public class Controller extends Main{
     }
 
     public void render(){
-        lineChartData.clear();
+        lineChartDataOne.clear();
+        lineChartDataTwo.clear();
+        lineChartDataThree.clear();
 
         //----------Line one-------------------------------------------------------
         for(int i=0; i<xStep.length; i++){
@@ -118,7 +128,7 @@ public class Controller extends Main{
         count2 = 1.0;
         count--;
 
-        lineChartData.add(createSeriesAndSetDataDiagram(xStep, yStep, "sinOne"));
+        lineChartDataOne.add(createSeriesAndSetDataDiagram(xStep, yStep, "sinOne"));
 
         //----------Line two-------------------------------------------------------
         for(int i=0; i<xStep2.length; i++){
@@ -130,7 +140,7 @@ public class Controller extends Main{
         count2 = 2.0;
         count--;
 
-        lineChartData.add(createSeriesAndSetDataDiagram(xStep2, yStep2, "sinTwo"));
+        lineChartDataTwo.add(createSeriesAndSetDataDiagram(xStep2, yStep2, "sinTwo"));
 
         //----------Line three-------------------------------------------------------
         for(int i=0; i<xStep3.length; i++){
@@ -142,7 +152,7 @@ public class Controller extends Main{
         count2 = 0.0;
         count--;
 
-        lineChartData.add(createSeriesAndSetDataDiagram(xStep3, yStep3, "sinThree"));
+        lineChartDataThree.add(createSeriesAndSetDataDiagram(xStep3, yStep3, "sinThree"));
     }
 
     private class AddToQueue extends Thread {
