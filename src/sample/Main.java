@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setScene(SceneBuilder.create()
                 .root(root)
                 .width(1600).height(900)
-               //  .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
+                 .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
                 .build()
         );
 
