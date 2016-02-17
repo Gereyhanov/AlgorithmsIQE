@@ -84,6 +84,7 @@ public class Controller extends Main{
         button.setStyle("-fx-background-color: cornflowerblue; -fx-text-fill: white; -fx-font-size: 20px");
         buttonSpeedMore.setStyle("-fx-background-color: indianred; -fx-text-fill: white");
         buttonSpeedLess.setStyle("-fx-background-color: indianred; -fx-text-fill: white");
+
     }
 
     @FXML

@@ -10,13 +10,14 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    @SuppressWarnings("deprecation")
     @Override public void start(Stage primaryStage) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("view/sample.fxml"));
         primaryStage.setScene(SceneBuilder.create()
                 .root(root)
                 .width(1600).height(900)
-                 .stylesheets(Main.class.getResource("style/CurveFittedChart.css").toExternalForm())
+                 .stylesheets(Main.class.getResource("style/ChartStyle.css").toExternalForm())
                 .build()
         );
 
