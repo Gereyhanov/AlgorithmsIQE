@@ -1,6 +1,7 @@
 package sample.view;
 
 import com.jfoenix.controls.JFXButton;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.SequentialTransition;
@@ -15,16 +16,16 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
 import javafx.util.Duration;
-import sample.Main;
-
+import sample.kotlin.CalcFunctions;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller extends Main{
+public class Controller{
 
+    CalcFunctions calcFunctions = new CalcFunctions();
 
     private ExecutorService executor;
     private AddToQueue addToQueue;
@@ -55,7 +56,7 @@ public class Controller extends Main{
     Double[] xStep2 = new Double[100], yStep2 = new Double[100];
     Double[] xStep3 = new Double[100], yStep3 = new Double[100];
 
-    int timeRendering = 200;
+    int timeRendering = 100;
 
     Boolean aBoolean = true;
 
@@ -99,6 +100,8 @@ public class Controller extends Main{
             animation.stop();
             aBoolean = true;
         }
+
+        button.setText(calcFunctions.getTitleKotlin());
     }
 
     @FXML
@@ -121,38 +124,24 @@ public class Controller extends Main{
 
         //----------Line one-------------------------------------------------------
         for(int i=0; i<xStep.length; i++){
-            xStep[i] = count2 + 0.2;
-            yStep[i] = Math.sin(count + 0.2);
+            xStep[i] = count2;
+            yStep[i] = Math.sin(count);
+            //----------Line two-------------------------------------------------------
+            xStep2[i] = count2;
+            yStep2[i] = Math.sin(Math.sin(count) + (Math.sqrt(count)));
+            //----------Line three-------------------------------------------------------
+            xStep3[i] = count2;
+            yStep3[i] = Math.sin(Math.round(count));
+
             count = count + 0.2;
             count2 = count2 + 0.2;
-        }
-        count2 = 1.0;
-        count--;
 
-        lineChartDataOne.add(createSeriesAndSetDataDiagram(xStep, yStep, "sinOne"));
-
-        //----------Line two-------------------------------------------------------
-        for(int i=0; i<xStep2.length; i++){
-            xStep2[i] = count2 + 0.2;
-            yStep2[i] = Math.sin(count + 0.2);
-            count = count + 0.2;
-            count2 = count2 + 0.2;
-        }
-        count2 = 2.0;
-        count--;
-
-        lineChartDataTwo.add(createSeriesAndSetDataDiagram(xStep2, yStep2, "sinTwo"));
-
-        //----------Line three-------------------------------------------------------
-        for(int i=0; i<xStep3.length; i++){
-            xStep3[i] = count2 + 0.2;
-            yStep3[i] = Math.sin(count + 0.2);
-            count = count + 0.2;
-            count2 = count2 + 0.2;
         }
         count2 = 0.0;
         count--;
 
+        lineChartDataOne.add(createSeriesAndSetDataDiagram(xStep, yStep, "sinOne"));
+        lineChartDataTwo.add(createSeriesAndSetDataDiagram(xStep2, yStep2, "sinTwo"));
         lineChartDataThree.add(createSeriesAndSetDataDiagram(xStep3, yStep3, "sinThree"));
     }
 
