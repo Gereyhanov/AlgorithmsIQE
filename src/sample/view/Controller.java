@@ -1,43 +1,36 @@
 package sample.view;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
-
 import javafx.util.Duration;
-import sample.kotlin.CalcFunctions;
+import sample.kotlin.UserChartFunctions;
+import sample.kotlin.UserModernUI;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller{
+public class Controller {
 
-    CalcFunctions calcFunctions = new CalcFunctions();
+    UserChartFunctions userChartSin = new UserChartFunctions("sin");
+    UserChartFunctions userChartFft = new UserChartFunctions("fft");
+    UserChartFunctions userChartDist = new UserChartFunctions("dist");
+
+    UserModernUI userModernUI = new UserModernUI();
 
     private ExecutorService executor;
     private AddToQueue addToQueue;
     private Timeline timeline;
     private SequentialTransition animation;
-
-    private ObservableList<XYChart.Series<Number, Number>> lineChartDataOne = FXCollections.observableArrayList();
-    private ObservableList<XYChart.Series<Number, Number>> lineChartDataTwo = FXCollections.observableArrayList();
-    private ObservableList<XYChart.Series<Number, Number>> lineChartDataThree = FXCollections.observableArrayList();
-
-    Double count = 0.0;
-    Double count2 = 0.0;
 
     @FXML
     JFXButton button;
@@ -52,10 +45,6 @@ public class Controller{
     @FXML
     LineChart lineChartViewThree = new LineChart(new NumberAxis(), new NumberAxis());
 
-    Double[] xStep = new Double[100], yStep = new Double[100];
-    Double[] xStep2 = new Double[100], yStep2 = new Double[100];
-    Double[] xStep3 = new Double[100], yStep3 = new Double[100];
-
     int timeRendering = 100;
 
     Boolean aBoolean = true;
@@ -64,22 +53,20 @@ public class Controller{
     private void initialize() {
         //-- Prepare Executor Services
         executor = Executors.newCachedThreadPool();
-        addToQueue=new AddToQueue();
+        addToQueue = new AddToQueue();
         executor.execute(addToQueue);
 
-        //-- Prepare Timeline
-        //prepareTimeline();
-
         lineChartViewOne.setAnimated(false);
-        lineChartViewOne.setData(lineChartDataOne);
+        lineChartViewOne.setData(userChartSin.getLineChartData());
+
         lineChartViewOne.createSymbolsProperty();
 
         lineChartViewTwo.setAnimated(false);
-        lineChartViewTwo.setData(lineChartDataTwo);
+        lineChartViewTwo.setData(userChartFft.getLineChartData());
         lineChartViewTwo.createSymbolsProperty();
 
         lineChartViewThree.setAnimated(false);
-        lineChartViewThree.setData(lineChartDataThree);
+        lineChartViewThree.setData(userChartDist.getLineChartData());
         lineChartViewThree.createSymbolsProperty();
 
         button.setStyle("-fx-background-color: cornflowerblue; -fx-text-fill: white; -fx-font-size: 20px");
@@ -89,66 +76,50 @@ public class Controller{
     }
 
     @FXML
-    private void onButtonShowDiagram(){
+    private void onButtonShowDiagram() {
         //-- Prepare Timeline
-        if (aBoolean){
+        if (aBoolean) {
             button.setText("Stop render");
             prepareTimeline();
             aBoolean = false;
-        }else {
+        } else {
             button.setText("Start render");
             animation.stop();
             aBoolean = true;
         }
 
-        button.setText(calcFunctions.getTitleKotlin());
+        button.setText(userChartSin.getTitleKotlin());
     }
 
     @FXML
-    private void onButtonSpeedMore(){
-        if(timeRendering > 20) timeRendering = timeRendering - 10;
+    private void onButtonSpeedMore() {
+        if (timeRendering > 20) timeRendering = timeRendering - 10;
         animation.stop();
         prepareTimeline();
     }
+
     @FXML
-    private void onButtonSpeedLess(){
+    private void onButtonSpeedLess() {
         timeRendering = timeRendering + 10;
         animation.stop();
         prepareTimeline();
     }
 
-    public void render(){
-        lineChartDataOne.clear();
-        lineChartDataTwo.clear();
-        lineChartDataThree.clear();
+    public void render() {
 
-        //----------Line one-------------------------------------------------------
-        for(int i=0; i<xStep.length; i++){
-            xStep[i] = count2;
-            yStep[i] = Math.sin(count);
-            //----------Line two-------------------------------------------------------
-            xStep2[i] = count2;
-            yStep2[i] = Math.sin(Math.sin(count) + (Math.sqrt(count)));
-            //----------Line three-------------------------------------------------------
-            xStep3[i] = count2;
-            yStep3[i] = Math.sin(Math.round(count));
+        userChartSin.setChartStep(userModernUI.calcSin(110, 200, 200));
+        userChartFft.setChartStep(userModernUI.calcSin(10, 200, 200));
+        userChartDist.setChartStep(userModernUI.calcSin(55, 200, 200));
 
-            count = count + 0.2;
-            count2 = count2 + 0.2;
-
-        }
-        count2 = 0.0;
-        count--;
-
-        lineChartDataOne.add(createSeriesAndSetDataDiagram(xStep, yStep, "sinOne"));
-        lineChartDataTwo.add(createSeriesAndSetDataDiagram(xStep2, yStep2, "sinTwo"));
-        lineChartDataThree.add(createSeriesAndSetDataDiagram(xStep3, yStep3, "sinThree"));
+        userChartSin.show();
+        userChartFft.show();
+        userChartDist.show();
     }
 
     private class AddToQueue extends Thread {
-        public void run(){
+        public void run() {
             try {
-                Thread.currentThread().setName(Thread.currentThread().getId()+"-DataAdder");
+                Thread.currentThread().setName(Thread.currentThread().getId() + "-DataAdder");
                 Thread.sleep(50);
                 executor.execute(addToQueue);
             } catch (InterruptedException ex) {
@@ -158,15 +129,15 @@ public class Controller{
     }
 
     //-- Timeline gets called in the JavaFX Main thread
-    private void prepareTimeline(){
+    private void prepareTimeline() {
         //-- Second slower timeline
         timeline = new Timeline();
         //-- This timeline is indefinite.
         timeline.setCycleCount(Animation.INDEFINITE);
-
         timeline.getKeyFrames().add(
                 new KeyFrame(Duration.millis(timeRendering), new EventHandler<ActionEvent>() {
-                    @Override public void handle(ActionEvent actionEvent) {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
                         //TODO: Вызов функции рендеринга графиков
                         render();
                     }
@@ -180,21 +151,5 @@ public class Controller{
         animation.play();
     }
 
-    public XYChart.Series <Number, Number> createSeriesAndSetDataDiagram(Double[] xStep, Double[] yStep, String nameSeries){
 
-        final XYChart.Series<Number, Number> series = new XYChart.Series<Number, Number>();
-        series.setName(nameSeries);
-
-        for(int i=0; i<xStep.length; i++){
-            series.getData().addAll(
-                    new XYChart.Data<Number,Number>(xStep[i], yStep[i])
-            );
-        }
-        return series;
-    }
-
-    private String parseColorToCssStyle(String color){
-        String parseColor = "#" + color.substring(2, color.length());
-        return parseColor;
-    }
 }

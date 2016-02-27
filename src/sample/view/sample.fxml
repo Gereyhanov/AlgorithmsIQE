@@ -25,7 +25,7 @@
       </LineChart>
       <LineChart fx:id="lineChartViewOne" layoutX="1090.0" layoutY="10.0" prefHeight="280.0" prefWidth="500.0" style="-fx-background-color: #7986CB;" title="One">
          <xAxis>
-            <NumberAxis lowerBound="0" tickLabelFill="WHITE" tickUnit="1" upperBound="3" />
+            <NumberAxis lowerBound="0" tickLabelFill="WHITE" tickUnit="1.0" upperBound="3.0" />
          </xAxis>
          <yAxis>
             <NumberAxis lowerBound="0" tickLabelFill="WHITE" tickUnit="1" upperBound="3" />
