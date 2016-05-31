@@ -1,4 +1,4 @@
-package sample.kotlin
+package sample.kotlinFun
 
 import javafx.collections.FXCollections
 import javafx.scene.chart.XYChart

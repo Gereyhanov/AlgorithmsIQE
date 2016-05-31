@@ -22,7 +22,7 @@ public class Main extends Application {
                 .build()
         );
 
-         primaryStage.show();
+        primaryStage.show();
 
     }
 

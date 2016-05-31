@@ -11,8 +11,8 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.util.Duration;
-import sample.kotlin.UserChartFunctions;
-import sample.kotlin.UserModernUI;
+import sample.kotlinFun.UserChartFunctions;
+import sample.kotlinFun.UserModernUI;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +20,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller {
+
+
 
     UserChartFunctions userChartSin = new UserChartFunctions("sin");
     UserChartFunctions userChartFft = new UserChartFunctions("fft");
@@ -110,6 +112,7 @@ public class Controller {
         userChartSin.setChartStep(userModernUI.calcSin(110, 200, 200));
         userChartFft.setChartStep(userModernUI.calcSin(10, 200, 200));
         userChartDist.setChartStep(userModernUI.calcSin(55, 200, 200));
+
 
         userChartSin.show();
         userChartFft.show();

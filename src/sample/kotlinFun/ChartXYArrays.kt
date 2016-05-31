@@ -1,4 +1,4 @@
-package sample.kotlin
+package sample.kotlinFun
 
 class  ChartXYArrays(var sizeArray: Int) {
     var xStep = arrayOfNulls<Double>(sizeArray)

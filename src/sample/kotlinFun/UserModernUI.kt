@@ -1,4 +1,4 @@
-package sample.kotlin
+package sample.kotlinFun
 
 class UserModernUI {
 
