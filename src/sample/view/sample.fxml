@@ -39,7 +39,7 @@
             <JFXButton fx:id="button" defaultButton="true" layoutX="111.0" layoutY="37.0" onAction="#onButtonShowDiagram" prefHeight="40.0" prefWidth="220.0" text="Start render" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
             <JFXButton fx:id="buttonSpeedLess" defaultButton="true" layoutX="51.0" layoutY="78.0" onAction="#onButtonSpeedLess" prefHeight="40.0" prefWidth="100.0" text="Speed-" textAlignment="CENTER" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="70.0" />
             <JFXButton fx:id="buttonSpeedMore" defaultButton="true" layoutX="283.0" layoutY="72.0" onAction="#onButtonSpeedMore" prefHeight="40.0" prefWidth="100.0" text="Speed+" textAlignment="CENTER" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0" />
-            <AnchorPane layoutX="47.0" layoutY="342.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #0D47A1; -fx-border-color: #FFFFFF; -fx-border-width: 2;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="300.0" />
+            <AnchorPane layoutY="296.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #0D47A1; -fx-border-color: #FFFFFF; -fx-border-width: 2;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="296.0" />
          </children>
       </AnchorPane>
    </children>
